@@ -16,7 +16,7 @@ public class Main {
         int num1 = GetInt(1); //Call to get the first number
         int num2 = GetInt(2); //Call to get the second number
         num2 =DoOperation(num1, num2, operation);
-
+        System.out.println("Hola");
 
         System.out.println(num1+" "+operation+" "+num2);
     }
