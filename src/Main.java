@@ -8,7 +8,7 @@ public class Main {
         int num1 = GetInt(1); //Call to get the first number
         int num2 = GetInt(2); //Call to get the second number
         num2 = ScannerDivi(num2, operation); //Call to check if you try to divide by 0
-
+        System.out.println("Hola");
         System.out.println(num1+" "+operation+" "+num2);
     }
 
