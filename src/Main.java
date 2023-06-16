@@ -1,13 +1,22 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
+        ArrayList<History> history = new ArrayList<>();
+        history.add(new History(4,'+',2,6));
+        history.add(new History(4,'-',2,2));
+        history.add(new History(4,'*',2,8));
+        history.add(new History(4,'/',2,2));
+        history.add(new History(4,'^',2,16));
+
         char operation = GetOperation();
         int num1 = GetInt(1); //Call to get the first number
         int num2 = GetInt(2); //Call to get the second number
-        num2 = ScannerDivi(num2, operation); //Call to check if you try to divide by 0
+        num2 =DoOperation(num1, num2, operation);
+
 
         System.out.println(num1+" "+operation+" "+num2);
     }
@@ -78,13 +87,32 @@ public class Main {
 
 
     //Division Check
-    public static int ScannerDivi(int num2, char symbol){
+    public static int ScannerDivi(int num2){
 
-        if(symbol == '/' && num2 == 0){
-            System.out.println("ERROR. Cannot be divided by 0");
-            System.out.println("Change the second number");
-            num2 = GetInt(2);
+        do {
+            if (num2 == 0) {
+                System.out.println("ERROR. Cannot be divided by 0");
+                System.out.println("Change the second number");
+                num2 = GetInt(2);
+            }
+        }while (num2 == 0);
+
+        return num2;
+    }
+
+    private static int DoOperation(int num1, int num2, char operation) {
+        int result = 0;
+        switch (operation) {
+            case '+' -> result = num1 + num2;
+            case '-' -> result = num1 - num2;
+            case '/' -> {
+                num2 = ScannerDivi(num2); //Call to check if you try to divide by 0
+                result = num1 / num2;
+            }
+            case '*' -> result = num1 * num2;
+            case '^' -> result = num1 ^ num2;
         }
+
         return num2;
     }
 }
