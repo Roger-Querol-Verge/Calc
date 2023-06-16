@@ -44,12 +44,8 @@ public class History {
         this.result = result;
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
-        return "Calc_History{" +
-                "num1=" + num1 +
-                ", operation=" + operation +
-                ", num2=" + num2 +
-                '}'+"\n";
+    @Override
+    public String toString() {
+        return "Calc_History: "+num1+" "+operation+" "+num2+" "+"= "+result+"\n";
     }
 }

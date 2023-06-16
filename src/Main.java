@@ -10,15 +10,14 @@ public class Main {
         history.add(new History(4,'-',2,2));
         history.add(new History(4,'*',2,8));
         history.add(new History(4,'/',2,2));
-        history.add(new History(4,'^',2,16));
+        history.add(new History(4,'^',2,6));
 
         char operation = GetOperation();
         int num1 = GetInt(1); //Call to get the first number
         int num2 = GetInt(2); //Call to get the second number
-        num2 =DoOperation(num1, num2, operation);
+        DoOperation(num1, num2, operation, history);
 
-
-        System.out.println(num1+" "+operation+" "+num2);
+        System.out.println(history);
     }
 
 
@@ -100,7 +99,7 @@ public class Main {
         return num2;
     }
 
-    private static int DoOperation(int num1, int num2, char operation) {
+    private static void DoOperation(int num1, int num2, char operation, ArrayList<History>histories) {
         int result = 0;
         switch (operation) {
             case '+' -> result = num1 + num2;
@@ -112,7 +111,7 @@ public class Main {
             case '*' -> result = num1 * num2;
             case '^' -> result = num1 ^ num2;
         }
-
-        return num2;
+        System.out.println("The result of "+num1+" "+operation+" "+num2+" is = "+result);
+        histories.add(new History(num1,operation,num2,result));
     }
 }
