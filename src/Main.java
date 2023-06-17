@@ -12,12 +12,36 @@ public class Main {
         history.add(new History(4,'/',2,2));
         history.add(new History(4,'^',2,6));
 
-        char operation = GetOperation();
-        int num1 = GetInt(1); //Call to get the first number
-        int num2 = GetInt(2); //Call to get the second number
-        DoOperation(num1, num2, operation, history);
+        boolean exit = false;
+        do{
+            exit = Menu(exit, history);
+        }while (!exit);
+    }
 
-        System.out.println(history);
+
+    public static boolean Menu(boolean exit, ArrayList<History>history){
+        int opc_menu = 0;
+        System.out.println("\nMain Menu:\n1. Do the operations.\n2. View history\n3. Exit\n");
+        opc_menu = ScannerNum(opc_menu);
+
+        switch (opc_menu) {
+            case 1 -> {
+                char operation = GetOperation(); //Call to get the operation
+                int num1 = GetInt(1); //Call to get the first number
+                int num2 = GetInt(2); //Call to get the second number
+                DoOperation(num1, num2, operation, history); //Call to do the operation
+            }
+            case 2 -> {
+                System.out.println("Calculator History:");
+                System.out.println(history); //Print all the operations that you do
+            }
+            case 3 -> {
+                System.out.println("Good bye!");
+                exit = true;
+            }
+            default -> System.out.println("Introduce a number between 1-3");
+        }
+        return exit;
     }
 
 
@@ -99,6 +123,8 @@ public class Main {
         return num2;
     }
 
+
+    //Data operation
     private static void DoOperation(int num1, int num2, char operation, ArrayList<History>histories) {
         int result = 0;
         switch (operation) {
@@ -111,7 +137,7 @@ public class Main {
             case '*' -> result = num1 * num2;
             case '^' -> result = num1 ^ num2;
         }
-        System.out.println("The result of "+num1+" "+operation+" "+num2+" is = "+result);
+        System.out.println("\nThe result of "+num1+" "+operation+" "+num2+" is = "+result);
         histories.add(new History(num1,operation,num2,result));
     }
 }
